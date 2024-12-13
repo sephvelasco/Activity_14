@@ -1,0 +1,18 @@
+---
+- name: keystone
+  hosts: web_server
+  become: true
+  roles:
+    - role: web_server
+
+- name: glance
+  hosts: db_server
+  become: true
+  roles:
+    - role: db_server
+
+- name: nova
+  hosts: file_server
+  become: true
+  roles:
+    - role: file_server

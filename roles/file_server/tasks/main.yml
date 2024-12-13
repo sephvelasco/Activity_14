@@ -1,0 +1,37 @@
+---
+- name: Update Cache
+  package:
+    update_cache: true
+
+- name: Install Keystone
+  apt:
+    name: keystone
+    state: latest
+
+- name: Enable and Start Keystone
+  systemd:
+    name: apache2
+    state: started
+    enabled: yes
+
+- name: Install Glance
+  apt:
+    name:
+      - glance
+      - python3-glanceclient
+    state: latest
+
+- name: Enable and Start Glance
+  systemd:
+    name: glance-api
+    state: started
+    enabled: yes
+
+- name: Install Nova
+  apt:
+    name:
+      - nova-api
+      - nova-scheduler
+      - nova-conductor
+      - nova-compute
+    state: latest
